@@ -1,10 +1,10 @@
 # NextJS Steam Authentication
 ### 📖 Table of Contents
-- [👋 Introduction](#introduction)
-- [🔌 Getting Started](#getting-started)
-- [⚙️ How It Works](#how-it-works)
-- [💡 Improvements to Make](#improvements-to-make)
-- [📚 Helpful Resources](#helpful-resources)
+- [👋 Introduction](#👋-introduction)
+- [🔌 Getting Started](#🔌-getting-started)
+- [⚙️ How It Works](#⚙️-how-it-works)
+- [💡 Improvements to Make](#💡-improvements-to-make)
+- [📚 Helpful Resources](#📚-helpful-resources)
 
 ### 👋 Introduction
 NextJS is a React-based web framework that aims to deliver websites as statically as possible. This can provide many performance and development benefits over a framework like [Express](https://github.com/expressjs/express#readme).
