@@ -42,6 +42,10 @@ This is only one example of authenticating a user with their Steam account via N
 ##### Isolating Middleware
 `path` is set within `login.ts`, `logout.ts` and `return.ts` or the middleware will apply to all routes. An alternative solution will need to ensure that middleware set on an API route only runs on that API route. Removing `path` from each route handler will cause constantly redirect you back to Steam's login page.
 
+##### Avoiding Manual Request Population
+`router` works in parallel with NextJS's native router. However, it needs to be explicitly activated per React page, as seen in `Index.getServerSideProps` where it will populate the `Request` object with any additional fields picked up. This can be repetitive in nature so having `router` run natively or just once for all pages would be ideal.
+
+
 ### 📚 Helpful Resources 
 - [Authentication in NextJS](https://nextjs.org/docs/authentication)
 - [next-connect](https://github.com/hoangvvo/next-connect)
