@@ -6,12 +6,12 @@
 - [💡 Improvements to Make](#-improvements-to-make)
 - [📚 Helpful Resources](#-helpful-resources)
 
-### 👋 Introduction
+## 👋 Introduction
 NextJS is a React-based web framework that aims to deliver websites as statically as possible. This can provide many performance and development benefits over a framework like [Express](https://github.com/expressjs/express#readme).
 
 Setting up authentication can be tricky, especially with OpenID login systems such as Steam. This repository is an example of how one may go about injecting Steam user authentication into their React-based application and are looking to migrate to a framework like NextJS.
 
-### 🔌 Getting Started
+## 🔌 Getting Started
 
 After downloading the project, you should install all of the required dependencies.
 
@@ -33,10 +33,10 @@ You can also test the web application for `production` if you feel the need.
     $ npm run build
     $ npm start
 
-### ⚙️ How It Works
+## ⚙️ How It Works
 `🚧 TODO 🚧`
 
-### 💡 Improvements To Make
+## 💡 Improvements To Make
 This is only one example of authenticating a user with their Steam account via NextJS. There are some fixes that can be added to better development and cleanliness without making significant changes.
 
 ##### Isolating Middleware
@@ -46,7 +46,7 @@ This is only one example of authenticating a user with their Steam account via N
 `router` works in parallel with NextJS's native router. However, it needs to be explicitly activated per React page, as seen in `Index.getServerSideProps` where it will populate the `Request` object with any additional fields picked up. This can be repetitive in nature so having `router` run natively or just once for all pages would be ideal.
 
 
-### 📚 Helpful Resources 
+## 📚 Helpful Resources 
 - [Authentication in NextJS](https://nextjs.org/docs/authentication)
 - [next-connect](https://github.com/hoangvvo/next-connect)
 - [NextJS with Passport](https://github.com/vercel/next.js/tree/canary/examples/with-passport)
