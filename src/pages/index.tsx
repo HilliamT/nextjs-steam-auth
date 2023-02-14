@@ -1,10 +1,14 @@
 import Link from "next/link";
 import router from "../lib/router";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default function Index({ user }) {
+import { SteamProfile } from "@/lib/passport";
+import type { NextSteamAuthApiRequest } from "../lib/router";
 
+export default function Index({ user }:{user: SteamProfile}) {
+  console.log(user) // Shows the SteamProfile object in console.
 	return <div style={{ textAlign: "center" }}>
-		{user 
+		{user
 			? <div>
 				Welcome back!<br />
 				From logging in, your SteamID is {user.id}.<br />
@@ -12,7 +16,7 @@ export default function Index({ user }) {
 				<Link href="/api/auth/logout">Logout</Link>
 			</div>
 
-			: <div>
+			:<div>
 				Welcome!<br />
 				<Link href="/api/auth/login">Login</Link>
 			</div>
@@ -20,7 +24,8 @@ export default function Index({ user }) {
 	</div>;
 }
 
-export async function getServerSideProps({ req, res}) {
+
+export async function getServerSideProps({ req, res}:{req: NextSteamAuthApiRequest, res: NextApiResponse}) {
     await router.run(req, res);
     return { props: { user: req.user || null } };
 }
