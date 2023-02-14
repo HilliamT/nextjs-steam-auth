@@ -1,8 +1,9 @@
 import Link from "next/link";
 import router from "../lib/router";
 import { NextApiRequest, NextApiResponse } from "next";
+import { SteamProfile } from "@/lib/passport";
 
-export default function Index({ user }) {
+export default function Index({ user }:{user: SteamProfile}) {
   console.log(user)
 	return <div style={{ textAlign: "center" }}>
 		{user 
@@ -21,7 +22,7 @@ export default function Index({ user }) {
 	</div>;
 }
 
-export async function getServerSideProps({ req, res}) {
+export async function getServerSideProps({ req, res}:{req: NextApiRequest, res: NextApiResponse}) {
     await router.run(req, res);
     return { props: { user: req.user || null } };
 }
