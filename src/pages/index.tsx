@@ -1,8 +1,9 @@
 import Link from "next/link";
 import router from "../lib/router";
 import { NextApiRequest, NextApiResponse } from "next";
+
 import { SteamProfile } from "@/lib/passport";
-import { NextSteamAuthApiRequest } from "@/lib/types";
+import type { NextSteamAuthApiRequest } from "../lib/router";
 
 export default function Index({ user }:{user: SteamProfile}) {
   console.log(user)
