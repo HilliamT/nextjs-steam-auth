@@ -2,6 +2,7 @@ import Link from "next/link";
 import router from "../lib/router";
 import { NextApiRequest, NextApiResponse } from "next";
 import { SteamProfile } from "@/lib/passport";
+import { NextSteamAuthApiRequest } from "@/lib/types";
 
 export default function Index({ user }:{user: SteamProfile}) {
   console.log(user)
@@ -22,7 +23,7 @@ export default function Index({ user }:{user: SteamProfile}) {
 	</div>;
 }
 
-export async function getServerSideProps({ req, res}:{req: NextApiRequest, res: NextApiResponse}) {
+export async function getServerSideProps({ req, res}:{req: NextSteamAuthApiRequest, res: NextApiResponse}) {
     await router.run(req, res);
     return { props: { user: req.user || null } };
 }

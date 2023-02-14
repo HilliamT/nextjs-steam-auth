@@ -1,0 +1,1 @@
+type NextSteamAuthApiRequest = NextApiRequest & {user: SteamProfile};
