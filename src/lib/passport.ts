@@ -19,7 +19,7 @@ passport.serializeUser(function(user, done) {
 	done(null, user);
 });
   
-passport.deserializeUser(function(obj:SteamProfile, done) {
+passport.deserializeUser(function(obj: SteamProfile, done) {
 	done(null, obj);
 });
 
@@ -27,7 +27,7 @@ passport.use(new SteamStrategy({
 	returnURL: `${process.env.DOMAIN}/api/auth/return`,
 	realm: `${process.env.DOMAIN}`,
 	apiKey: `${process.env.STEAM_API_KEY}`
-}, (_, profile:SteamProfile, done) => {
+}, (_: string, profile: SteamProfile, done: (a: null | string,b: SteamProfile) => typeof done) => {
 	// Fetch any more information to populate
 	return done(null, profile);
 }));
