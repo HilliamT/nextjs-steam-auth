@@ -24,6 +24,7 @@ export default function Index({ user }:{user: SteamProfile}) {
 	</div>;
 }
 
+
 export async function getServerSideProps({ req, res}:{req: NextSteamAuthApiRequest, res: NextApiResponse}) {
     await router.run(req, res);
     return { props: { user: req.user || null } };
