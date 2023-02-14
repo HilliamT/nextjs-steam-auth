@@ -6,7 +6,7 @@ import { SteamProfile } from "@/lib/passport";
 import type { NextSteamAuthApiRequest } from "../lib/router";
 
 export default function Index({ user }:{user: SteamProfile}) {
-  console.log(user)
+  console.log(user) // Shows the SteamProfile object in console.
 	return <div style={{ textAlign: "center" }}>
 		{user
 			? <div>

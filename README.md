@@ -9,9 +9,9 @@
 ## 👋 Introduction
 NextJS is a React-based web framework that aims to deliver websites as statically as possible. This can provide many performance and development benefits over a framework like [Express](https://github.com/expressjs/express#readme).
 
-Setting up authentication can be tricky, especially with OpenID login systems such as Steam. This repository is an example of how one may go about injecting Steam user authentication into their React-based application and are looking to migrate to a framework like NextJS. 
+Setting up authentication can be tricky, especially with OpenID login systems such as Steam (there are not many implementations avaiable, let alone in NextJS). This repository is an example of how one may go about injecting Steam user authentication. This allows you to use Steam authentication with a NextJS API backend, and implement such components into your own project
 
-Unfortunately, there is not much other middleware for Steam authentication.  
+
 
 ## 🔌 Getting Started
 
@@ -51,6 +51,67 @@ This is only one example of authenticating a user with their Steam account via N
 ##### Avoiding Manual Request Population
 `router` works in parallel with NextJS's native router. However, it needs to be explicitly activated per React page, as seen in `Index.getServerSideProps` where it will populate the `Request` object with any additional fields picked up. This can be repetitive in nature so having `router` run natively or just once for all pages would be ideal. **`getServerSideProps` receives the request of the steam profile data on the frontend.**
 
+## "How to make the Steam auth a component?"
+
+You can copy and paste the component structure on `index.tsx`to another component of your choice (say, `steam.tsx`), just ensure you have the props paramater in both the component and the page file (`index.tsx`) to allow `getServerSideProps` to inject the request object cookie from the backend. (You only need `getServerSideProps` on the `index.tsx`, or page of the rendered content).
+
+Example
+
+
+**Here is our Here is Steam.tsx, our component-ized Steam authentication.**
+
+```ts
+
+
+import Link from "next/link";
+import router from "@/lib/auth/router";
+import type { SteamProfile } from '@/lib/state/state'
+
+
+export default function Steam({ user }: {user: SteamProfile}) {
+    console.log(user)
+	return <div style={{ textAlign: "center" }}>
+		{user 
+			? <div className='font-bold'>
+				Welcome back!<br />
+				From logging in, your SteamID is {user.id}.<br />
+				You can call other APIs to get more information within `getServerSideProps` or within `lib/passport.ts`.<br />
+				<Link href="/api/auth/logout">Logout</Link>
+			</div>
+
+			: <div>
+				Welcome!<br />
+				<Link href="/api/auth/login">Login</Link>
+			</div>
+		}
+	</div>;
+}
+```
+
+**Now here is our index.tsx, passing the request object to the Steam function.**
+
+```ts
+import router from '@/lib/auth/router'
+import type { SteamProfile } from '@/lib/passport'
+import type { NextSteamAuthApiRequest } from "../lib/router";
+
+
+import Steam from '@/lib/components/auth/Steam';
+
+export default function Home({ user }: {user: SteamProfile}) {
+  return (
+    <>
+    <Steam user={user}/>
+    
+    </>
+  )
+}
+
+export async function getServerSideProps({ req, res}:{req: NextSteamAuthApiRequest, res: NextApiResponse}) {
+  await router.run(req, res);
+  return { props: { user: req.user || null } };
+}
+```
 
 ## 📚 Helpful Resources 
 - [Authentication in NextJS](https://nextjs.org/docs/authentication)
