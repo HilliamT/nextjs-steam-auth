@@ -1,9 +1,6 @@
-require("dotenv").config();
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+}
 
-module.exports = {
-	env: {
-		DOMAIN: process.env.DOMAIN,
-		STEAM_API_KEY: process.env.STEAM_API_KEY,
-		SESSION_SECRET: process.env.SESSION_SECRET
-	}
-};
+module.exports = nextConfig
