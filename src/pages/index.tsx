@@ -8,7 +8,7 @@ import type { NextSteamAuthApiRequest } from "../lib/router";
 export default function Index({ user }:{user: SteamProfile}) {
   console.log(user)
 	return <div style={{ textAlign: "center" }}>
-		{user 
+		{user
 			? <div>
 				Welcome back!<br />
 				From logging in, your SteamID is {user.id}.<br />
@@ -16,7 +16,7 @@ export default function Index({ user }:{user: SteamProfile}) {
 				<Link href="/api/auth/logout">Logout</Link>
 			</div>
 
-			: <div>
+			:<div>
 				Welcome!<br />
 				<Link href="/api/auth/login">Login</Link>
 			</div>
